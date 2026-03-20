@@ -178,19 +178,15 @@ export function Layout() {
               <ul className="space-y-4 text-sm">
                 <li className="flex items-start gap-3 text-slate-400">
                   <MapPin className="h-5 w-5 text-secondary shrink-0" />
-                  <span>
-                    Av. das Nações Unidas, 12345
-                    <br />
-                    São Paulo, SP
-                  </span>
+                  <span>Rua 9, Qd. 15 Lt. 15-A , Vila Industrial Jundiaí - Anápolis-GO</span>
                 </li>
                 <li className="flex items-center gap-3 text-slate-400">
                   <Phone className="h-5 w-5 text-secondary shrink-0" />
-                  <span>+55 (11) 3456-7890</span>
+                  <span>+55 (62) 3315-2469</span>
                 </li>
                 <li className="flex items-center gap-3 text-slate-400">
                   <Mail className="h-5 w-5 text-secondary shrink-0" />
-                  <span>contato@mastec.com.br</span>
+                  <span>vendas@mastectelecom.com.br</span>
                 </li>
               </ul>
             </div>
