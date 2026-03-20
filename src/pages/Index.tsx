@@ -1,20 +1,16 @@
 import { Hero } from '@/components/sections/Hero'
-import { Services } from '@/components/sections/Services'
 import { About } from '@/components/sections/About'
-import { Features } from '@/components/sections/Features'
-import { Pricing } from '@/components/sections/Pricing'
-import { Faq } from '@/components/sections/Faq'
+import { Services } from '@/components/sections/Services'
+import { Projects } from '@/components/sections/Projects'
 import { Contact } from '@/components/sections/Contact'
 
 export default function Index() {
   return (
-    <div className="w-full overflow-hidden">
+    <div className="flex flex-col min-h-screen">
       <Hero />
-      <Services />
       <About />
-      <Features />
-      <Pricing />
-      <Faq />
+      <Services />
+      <Projects />
       <Contact />
     </div>
   )

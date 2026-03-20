@@ -1,65 +1,82 @@
-import { Network, Zap, RadioReceiver, ArrowUpRight } from 'lucide-react'
-import { Card, CardContent } from '@/components/ui/card'
+import { Building2, Zap, Wifi, HardHat, Cable, Server } from 'lucide-react'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 
-const SERVICES = [
+const services = [
   {
-    icon: Network,
-    title: 'Infraestrutura de Rede',
+    title: 'Engenharia Civil',
     description:
-      'Descubra arquiteturas de alto impacto para sua operação. Otimizamos o tráfego de dados para garantir escalabilidade e atrair tráfego qualificado de informações.',
+      'Desenvolvimento de projetos, construções e reformas comerciais e industriais com rigoroso controle de qualidade estrutural e arquitetônico.',
+    icon: Building2,
   },
   {
-    icon: Zap,
     title: 'Engenharia Elétrica',
     description:
-      'Projetos elétricos eficientes, otimizando elementos cruciais para melhor performance, redução de custos e segurança para usuários e equipamentos.',
+      'Projetos e instalações de baixa e média tensão, laudos técnicos, adequações normativas e soluções completas de eficiência energética.',
+    icon: Zap,
   },
   {
-    icon: RadioReceiver,
-    title: 'Soluções Telecom',
+    title: 'Infraestrutura de Redes',
     description:
-      'Construa autoridade operacional através de links dedicados, radiocomunicação e fibra óptica para impulsionar a comunicação da sua empresa.',
+      'Projetos de cabeamento estruturado, montagem de data centers, racks e certificação avançada de redes de dados e voz.',
+    icon: Server,
+  },
+  {
+    title: 'Redes Ópticas (FTTx)',
+    description:
+      'Lançamento, fusão e certificação de redes em fibra óptica para alta performance, garantindo estabilidade e velocidade na transmissão.',
+    icon: Cable,
+  },
+  {
+    title: 'Telecomunicações',
+    description:
+      'Instalação, comissionamento e manutenção preventiva e corretiva de torres, antenas e equipamentos de rádio transmissão.',
+    icon: Wifi,
+  },
+  {
+    title: 'Gestão e Gerenciamento',
+    description:
+      'Acompanhamento técnico especializado, fiscalização e gestão integral de projetos de engenharia, garantindo prazos e orçamentos.',
+    icon: HardHat,
   },
 ]
 
 export function Services() {
   return (
-    <section id="services" className="section-padding bg-slate-50">
-      <div className="container mx-auto px-4">
-        <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
-          <div className="max-w-2xl">
-            <h4 className="text-primary font-bold tracking-wide uppercase text-sm mb-3">
-              Nossos Serviços
-            </h4>
-            <h2 className="text-3xl md:text-4xl font-bold text-secondary leading-tight">
-              Aumente a Performance &<br />
-              Escale sua Operação
-            </h2>
+    <section id="servicos" className="py-24 bg-white">
+      <div className="container mx-auto px-4 md:px-6">
+        <div className="text-center max-w-3xl mx-auto mb-16">
+          <div className="inline-block px-4 py-1.5 rounded-full bg-primary/5 text-primary font-semibold text-sm mb-6">
+            Especialidades
           </div>
-          <p className="text-slate-500 max-w-md text-sm md:text-base leading-relaxed">
-            Nós nos mantemos à frente com as mais recentes ferramentas do setor de telecom e
-            melhores práticas para garantir que seu negócio permaneça competitivo na era digital.
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-primary mb-6">
+            Nossos Serviços
+          </h2>
+          <p className="text-slate-600 text-lg">
+            Oferecemos um portfólio completo e integrado em engenharia e telecomunicações,
+            desenvolvendo soluções sob medida para garantir o sucesso do seu projeto.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {SERVICES.map((service, index) => (
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {services.map((service, index) => (
             <Card
               key={index}
-              className="group border-none shadow-sm hover:shadow-xl transition-all duration-300 bg-white overflow-hidden rounded-[24px]"
+              className="border-slate-100 hover:border-secondary/50 transition-all duration-300 shadow-sm hover:shadow-xl group bg-slate-50/50 hover:bg-white relative overflow-hidden"
             >
-              <CardContent className="p-8">
-                <div className="w-16 h-16 rounded-2xl bg-blue-50 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-primary transition-all duration-300">
-                  <service.icon className="w-8 h-8 text-primary group-hover:text-white transition-colors" />
+              <div className="absolute top-0 right-0 w-24 h-24 bg-secondary/5 rounded-bl-full -z-10 transition-transform duration-500 group-hover:scale-150" />
+
+              <CardHeader className="pb-4">
+                <div className="h-14 w-14 rounded-xl bg-white shadow-sm border border-slate-100 flex items-center justify-center mb-6 group-hover:bg-secondary group-hover:border-secondary transition-colors duration-300">
+                  <service.icon className="h-7 w-7 text-secondary group-hover:text-white transition-colors duration-300" />
                 </div>
-
-                <h3 className="text-xl font-bold text-secondary mb-4">{service.title}</h3>
-
-                <p className="text-slate-500 text-sm leading-relaxed mb-8">{service.description}</p>
-
-                <button className="w-10 h-10 rounded-full border border-slate-200 flex items-center justify-center text-slate-400 group-hover:bg-primary group-hover:text-white group-hover:border-primary transition-all duration-300">
-                  <ArrowUpRight className="w-5 h-5" />
-                </button>
+                <CardTitle className="text-xl font-bold text-primary group-hover:text-secondary transition-colors duration-300">
+                  {service.title}
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <CardDescription className="text-base text-slate-600 leading-relaxed">
+                  {service.description}
+                </CardDescription>
               </CardContent>
             </Card>
           ))}

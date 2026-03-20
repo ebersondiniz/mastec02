@@ -1,16 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap');
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
-  html {
-    scroll-behavior: smooth;
-  }
-
   :root {
-    --background: 210 40% 98%; /* Light blueish white */
+    --background: 0 0% 100%;
     --foreground: 222.2 84% 4.9%;
 
     --card: 0 0% 100%;
@@ -19,131 +13,42 @@
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
 
-    /* Primary: Vibrant Action Blue #3b82f6 */
-    --primary: 217 91% 60%;
+    /* Derived from Logo Dark Blue #1A1A4E */
+    --primary: 235 50% 20%;
     --primary-foreground: 210 40% 98%;
 
-    /* Secondary: Professional Navy Blue #1e40af */
-    --secondary: 226 71% 40%;
+    /* Derived from Logo Light Blue #0082C8 */
+    --secondary: 201 100% 39%;
     --secondary-foreground: 210 40% 98%;
 
-    --muted: 214.3 31.8% 91.4%;
+    --muted: 210 40% 96.1%;
     --muted-foreground: 215.4 16.3% 46.9%;
 
-    --accent: 214.3 31.8% 91.4%;
-    --accent-foreground: 222.2 84% 4.9%;
+    /* Derived from Logo Cyan #00B4F0 */
+    --accent: 195 100% 47%;
+    --accent-foreground: 222.2 47.4% 11.2%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
-    --ring: 217 91% 60%;
+    --ring: 222.2 84% 4.9%;
 
-    --radius: 1rem;
+    --radius: 0.5rem;
   }
 
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    font-family: 'Plus Jakarta Sans', sans-serif;
+  * {
+    @apply border-border;
   }
-
   body {
-    font-family: 'Inter', sans-serif;
-  }
-}
-
-@layer utilities {
-  @keyframes marquee {
-    0% {
-      transform: translateX(0%);
-    }
-    100% {
-      transform: translateX(-100%);
-    }
+    @apply bg-background text-foreground;
+    font-feature-settings:
+      'rlig' 1,
+      'calt' 1;
   }
 
-  .animate-marquee {
-    animation: marquee 25s linear infinite;
-  }
-
-  .animate-marquee-slow {
-    animation: marquee 40s linear infinite;
-  }
-
-  .glass-header {
-    @apply bg-background/80 backdrop-blur-md border-b border-border/50;
-  }
-
-  .text-gradient {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-blue-400;
-  }
-
-  .section-padding {
-    @apply py-20 md:py-32;
-  }
-
-  /* Retain all other standard animations from original */
-  @keyframes accordion-down {
-    from {
-      height: 0;
-    }
-    to {
-      height: var(--radix-accordion-content-height);
-    }
-  }
-  @keyframes accordion-up {
-    from {
-      height: var(--radix-accordion-content-height);
-    }
-    to {
-      height: 0;
-    }
-  }
-  @keyframes fade-in-up {
-    from {
-      transform: translateY(20px);
-      opacity: 0;
-    }
-    to {
-      transform: translateY(0);
-      opacity: 1;
-    }
-  }
-  @keyframes float {
-    0%,
-    100% {
-      transform: translateY(0);
-    }
-    50% {
-      transform: translateY(-10px);
-    }
-  }
-
-  .animate-accordion-down {
-    animation: accordion-down 0.2s ease-out;
-  }
-  .animate-accordion-up {
-    animation: accordion-up 0.2s ease-out;
-  }
-  .animate-fade-in-up {
-    animation: fade-in-up 0.6s ease-out both;
-  }
-  .animate-float {
-    animation: float 6s ease-in-out infinite;
-  }
-
-  .delay-100 {
-    animation-delay: 100ms;
-  }
-  .delay-200 {
-    animation-delay: 200ms;
-  }
-  .delay-300 {
-    animation-delay: 300ms;
+  html {
+    scroll-behavior: smooth;
   }
 }

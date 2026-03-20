@@ -1,224 +1,174 @@
 import { useState } from 'react'
-import { useForm } from 'react-hook-form'
-import { zodResolver } from '@hookform/resolvers/zod'
-import * as z from 'zod'
-import { MapPin, Mail, Phone, Loader2 } from 'lucide-react'
-
-import { Form, FormControl, FormField, FormItem, FormMessage } from '@/components/ui/form'
+import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
-import { Button } from '@/components/ui/button'
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/select'
+import { MapPin, Phone, Mail, Clock, Send } from 'lucide-react'
 import { useToast } from '@/hooks/use-toast'
 
-const formSchema = z.object({
-  name: z.string().min(2, { message: 'Nome é obrigatório' }),
-  email: z.string().email({ message: 'Email inválido' }),
-  phone: z.string().min(10, { message: 'Telefone inválido' }),
-  service: z.string().min(1, { message: 'Selecione um serviço' }),
-  message: z.string().min(10, { message: 'A mensagem deve ter pelo menos 10 caracteres' }),
-})
-
 export function Contact() {
-  const [isSubmitting, setIsSubmitting] = useState(false)
   const { toast } = useToast()
+  const [isSubmitting, setIsSubmitting] = useState(false)
 
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
-    defaultValues: {
-      name: '',
-      email: '',
-      phone: '',
-      service: '',
-      message: '',
-    },
-  })
-
-  function onSubmit(values: z.infer<typeof formSchema>) {
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault()
     setIsSubmitting(true)
     // Simulate API call
     setTimeout(() => {
-      console.log(values)
       setIsSubmitting(false)
-      form.reset()
       toast({
-        title: 'Mensagem Enviada!',
-        description: 'Nossa equipe entrará em contato em breve.',
-        variant: 'default',
+        title: 'Mensagem enviada com sucesso!',
+        description: 'Agradecemos o seu contato. Nossa equipe retornará em breve.',
       })
+      ;(e.target as HTMLFormElement).reset()
     }, 1500)
   }
 
   return (
-    <section id="contact" className="section-padding bg-white">
-      <div className="container mx-auto px-4 max-w-6xl">
-        <div className="text-center mb-16">
-          <h4 className="text-primary font-bold tracking-wide uppercase text-sm mb-3">
-            Consulta Gratuita
-          </h4>
-          <h2 className="text-3xl md:text-4xl font-bold text-secondary leading-tight mb-4">
-            Entre em Contato Conosco Hoje
-          </h2>
-          <p className="text-slate-500 max-w-2xl mx-auto">
-            Tem uma dúvida, sugestão ou apenas quer dizer olá? Estamos aqui e felizes em ouvir de
-            você!
-          </p>
-        </div>
+    <section id="contato" className="py-24 bg-slate-50">
+      <div className="container mx-auto px-4 md:px-6">
+        <div className="grid lg:grid-cols-5 gap-12 lg:gap-8 bg-white rounded-3xl shadow-xl overflow-hidden border border-slate-100">
+          <div className="lg:col-span-2 bg-primary p-8 md:p-12 text-white relative overflow-hidden">
+            <div className="absolute top-0 right-0 w-64 h-64 bg-secondary rounded-full blur-3xl opacity-20 -translate-y-1/2 translate-x-1/3"></div>
+            <div className="absolute bottom-0 left-0 w-64 h-64 bg-secondary rounded-full blur-3xl opacity-20 translate-y-1/2 -translate-x-1/3"></div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {/* Contact Info */}
-          <div className="lg:col-span-1 bg-primary rounded-3xl p-8 text-white flex flex-col justify-center space-y-8 shadow-xl shadow-primary/20">
-            <div className="flex gap-4 items-start">
-              <div className="bg-white/20 p-3 rounded-full shrink-0">
-                <MapPin className="w-6 h-6" />
-              </div>
-              <div>
-                <h4 className="font-bold text-lg mb-1">Localização do Escritório</h4>
-                <p className="text-blue-100 text-sm leading-relaxed">
-                  100 Av. Paulista, São Paulo, SP
-                </p>
-              </div>
-            </div>
+            <div className="relative z-10">
+              <h2 className="text-3xl font-bold mb-4">Informações de Contato</h2>
+              <p className="text-slate-300 mb-10 text-sm md:text-base leading-relaxed">
+                Estamos prontos para entender as necessidades do seu projeto. Entre em contato
+                conosco pelos canais abaixo ou preencha o formulário.
+              </p>
 
-            <div className="flex gap-4 items-start">
-              <div className="bg-white/20 p-3 rounded-full shrink-0">
-                <Mail className="w-6 h-6" />
-              </div>
-              <div>
-                <h4 className="font-bold text-lg mb-1">Envie uma Mensagem</h4>
-                <a
-                  href="mailto:contato@mastec.com.br"
-                  className="text-blue-100 text-sm hover:underline"
-                >
-                  contato@mastec.com.br
-                </a>
-              </div>
-            </div>
+              <div className="space-y-8">
+                <div className="flex items-start gap-4">
+                  <div className="h-10 w-10 rounded-full bg-white/10 flex items-center justify-center shrink-0">
+                    <MapPin className="h-5 w-5 text-secondary" />
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-white mb-1">Endereço Oficial</h4>
+                    <p className="text-slate-300 text-sm leading-relaxed">
+                      Av. das Nações Unidas, 12345 - Conj. 101
+                      <br />
+                      São Paulo, SP - CEP: 04578-000
+                    </p>
+                  </div>
+                </div>
 
-            <div className="flex gap-4 items-start">
-              <div className="bg-white/20 p-3 rounded-full shrink-0">
-                <Phone className="w-6 h-6" />
-              </div>
-              <div>
-                <h4 className="font-bold text-lg mb-1">Faça uma Ligação</h4>
-                <p className="text-blue-100 text-sm">+55 (11) 99999-9999</p>
+                <div className="flex items-start gap-4">
+                  <div className="h-10 w-10 rounded-full bg-white/10 flex items-center justify-center shrink-0">
+                    <Phone className="h-5 w-5 text-secondary" />
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-white mb-1">Telefones</h4>
+                    <p className="text-slate-300 text-sm leading-relaxed">
+                      +55 (11) 3456-7890
+                      <br />
+                      +55 (11) 98765-4321
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-4">
+                  <div className="h-10 w-10 rounded-full bg-white/10 flex items-center justify-center shrink-0">
+                    <Mail className="h-5 w-5 text-secondary" />
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-white mb-1">E-mail</h4>
+                    <p className="text-slate-300 text-sm leading-relaxed">
+                      contato@mastecengenharia.com.br
+                      <br />
+                      comercial@mastecengenharia.com.br
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-4">
+                  <div className="h-10 w-10 rounded-full bg-white/10 flex items-center justify-center shrink-0">
+                    <Clock className="h-5 w-5 text-secondary" />
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-white mb-1">Atendimento</h4>
+                    <p className="text-slate-300 text-sm leading-relaxed">
+                      Segunda a Sexta-feira
+                      <br />
+                      08:00 às 18:00
+                    </p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
 
-          {/* Form */}
-          <div className="lg:col-span-2 bg-slate-50 rounded-3xl p-8 lg:p-12 border border-slate-100">
-            <Form {...form}>
-              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <FormField
-                    control={form.control}
-                    name="name"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormControl>
-                          <Input
-                            placeholder="Seu Nome"
-                            className="h-12 bg-white rounded-lg border-slate-200"
-                            {...field}
-                          />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  <FormField
-                    control={form.control}
-                    name="email"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormControl>
-                          <Input
-                            placeholder="Seu Email"
-                            type="email"
-                            className="h-12 bg-white rounded-lg border-slate-200"
-                            {...field}
-                          />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  <FormField
-                    control={form.control}
-                    name="phone"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormControl>
-                          <Input
-                            placeholder="Número de Telefone"
-                            className="h-12 bg-white rounded-lg border-slate-200"
-                            {...field}
-                          />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  <FormField
-                    control={form.control}
-                    name="service"
-                    render={({ field }) => (
-                      <FormItem>
-                        <Select onValueChange={field.onChange} defaultValue={field.value}>
-                          <FormControl>
-                            <SelectTrigger className="h-12 bg-white rounded-lg border-slate-200 text-slate-500">
-                              <SelectValue placeholder="Selecione um Serviço" />
-                            </SelectTrigger>
-                          </FormControl>
-                          <SelectContent>
-                            <SelectItem value="infra">Infraestrutura de Rede</SelectItem>
-                            <SelectItem value="eletrica">Engenharia Elétrica</SelectItem>
-                            <SelectItem value="telecom">Soluções Telecom</SelectItem>
-                            <SelectItem value="outros">Outros</SelectItem>
-                          </SelectContent>
-                        </Select>
-                        <FormMessage />
-                      </FormItem>
-                    )}
+          <div className="lg:col-span-3 p-8 md:p-12">
+            <div className="mb-8">
+              <h3 className="text-2xl font-bold text-primary mb-2">Envie uma Mensagem</h3>
+              <p className="text-slate-500 text-sm">
+                Preencha os campos abaixo e entraremos em contato o mais rápido possível.
+              </p>
+            </div>
+
+            <form onSubmit={handleSubmit} className="space-y-6">
+              <div className="grid sm:grid-cols-2 gap-6">
+                <div className="space-y-2">
+                  <label htmlFor="name" className="text-sm font-semibold text-slate-700">
+                    Nome Completo
+                  </label>
+                  <Input
+                    id="name"
+                    required
+                    placeholder="Digite seu nome"
+                    className="h-12 bg-slate-50"
                   />
                 </div>
-
-                <FormField
-                  control={form.control}
-                  name="message"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormControl>
-                        <Textarea
-                          placeholder="Escreva sua mensagem aqui..."
-                          className="min-h-[150px] bg-white rounded-lg border-slate-200 resize-none"
-                          {...field}
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
+                <div className="space-y-2">
+                  <label htmlFor="email" className="text-sm font-semibold text-slate-700">
+                    E-mail Corporativo
+                  </label>
+                  <Input
+                    id="email"
+                    type="email"
+                    required
+                    placeholder="seu@email.com"
+                    className="h-12 bg-slate-50"
+                  />
+                </div>
+              </div>
+              <div className="space-y-2">
+                <label htmlFor="subject" className="text-sm font-semibold text-slate-700">
+                  Assunto
+                </label>
+                <Input
+                  id="subject"
+                  required
+                  placeholder="Ex: Orçamento para Infraestrutura de Rede"
+                  className="h-12 bg-slate-50"
                 />
-
-                <div className="flex justify-center pt-4">
-                  <Button
-                    type="submit"
-                    disabled={isSubmitting}
-                    className="rounded-full px-12 h-14 text-base shadow-lg shadow-primary/25 w-full md:w-auto"
-                  >
-                    {isSubmitting ? <Loader2 className="mr-2 h-5 w-5 animate-spin" /> : null}
-                    {isSubmitting ? 'Enviando...' : 'Enviar Mensagem'}
-                  </Button>
-                </div>
-              </form>
-            </Form>
+              </div>
+              <div className="space-y-2">
+                <label htmlFor="message" className="text-sm font-semibold text-slate-700">
+                  Sua Mensagem
+                </label>
+                <Textarea
+                  id="message"
+                  required
+                  placeholder="Descreva os detalhes do seu projeto ou necessidade..."
+                  rows={5}
+                  className="resize-none bg-slate-50"
+                />
+              </div>
+              <Button
+                type="submit"
+                className="w-full md:w-auto px-8 h-12 bg-secondary hover:bg-secondary/90 text-white font-medium"
+                disabled={isSubmitting}
+              >
+                {isSubmitting ? (
+                  'Processando envio...'
+                ) : (
+                  <>
+                    <Send className="mr-2 h-4 w-4" /> Enviar Mensagem
+                  </>
+                )}
+              </Button>
+            </form>
           </div>
         </div>
       </div>
