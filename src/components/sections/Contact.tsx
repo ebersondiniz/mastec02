@@ -46,9 +46,9 @@ export function Contact() {
                   <div>
                     <h4 className="font-semibold text-white mb-1">Endereço Oficial</h4>
                     <p className="text-slate-300 text-sm leading-relaxed">
-                      Av. das Nações Unidas, 12345 - Conj. 101
+                      Rua 9, Qd.15 Lt.15-A - Vila Industrial Jundiaí
                       <br />
-                      São Paulo, SP - CEP: 04578-000
+                      Anápolis, GO - CEP: 75115-200
                     </p>
                   </div>
                 </div>
@@ -60,9 +60,9 @@ export function Contact() {
                   <div>
                     <h4 className="font-semibold text-white mb-1">Telefones</h4>
                     <p className="text-slate-300 text-sm leading-relaxed">
-                      +55 (11) 3456-7890
+                      +55 (62) 3315-2469
                       <br />
-                      +55 (11) 98765-4321
+                      +55 (62) 99285-8786
                     </p>
                   </div>
                 </div>
@@ -74,9 +74,9 @@ export function Contact() {
                   <div>
                     <h4 className="font-semibold text-white mb-1">E-mail</h4>
                     <p className="text-slate-300 text-sm leading-relaxed">
-                      contato@mastecengenharia.com.br
+                      vendas@mastecengenharia.com.br
                       <br />
-                      comercial@mastecengenharia.com.br
+                      <br />
                     </p>
                   </div>
                 </div>
