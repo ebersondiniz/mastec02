@@ -75,7 +75,7 @@ export function Layout() {
               ))}
               <Button className="bg-secondary hover:bg-secondary/90 text-white rounded-full px-6 shadow-sm">
                 <Phone className="mr-2 h-4 w-4" />
-                (11) 3456-7890
+                (62) 3315-2469
               </Button>
             </nav>
 
