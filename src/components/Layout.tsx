@@ -73,9 +73,14 @@ export function Layout() {
                   {item.label}
                 </a>
               ))}
-              <Button className="bg-secondary hover:bg-secondary/90 text-white rounded-full px-6 shadow-sm">
-                <Phone className="mr-2 h-4 w-4" />
-                FALE CONOSCO
+              <Button
+                asChild
+                className="bg-secondary hover:bg-secondary/90 text-white rounded-full px-6 shadow-sm"
+              >
+                <a href="https://wa.me/556233152469" target="_blank" rel="noopener noreferrer">
+                  <Phone className="mr-2 h-4 w-4" />
+                  FALE CONOSCO
+                </a>
               </Button>
             </nav>
 
@@ -109,11 +114,14 @@ export function Layout() {
               </a>
             ))}
             <Button
+              asChild
               className="bg-secondary hover:bg-secondary/90 text-white mt-4 w-full max-w-xs"
               size="lg"
             >
-              <Phone className="mr-2 h-5 w-5" />
-              (11) 3456-7890
+              <a href="https://wa.me/556233152469" target="_blank" rel="noopener noreferrer">
+                <Phone className="mr-2 h-5 w-5" />
+                FALE CONOSCO
+              </a>
             </Button>
           </nav>
         </div>
