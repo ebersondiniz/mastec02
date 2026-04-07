@@ -75,7 +75,7 @@ export function Contact() {
                   <div>
                     <h4 className="font-semibold text-white mb-1">E-mail</h4>
                     <p className="text-slate-300 text-sm leading-relaxed">
-                      vendas@mastecengenharia.com.br
+                      vendas@mastectelecom.com.br
                       <br />
                       <br />
                     </p>
