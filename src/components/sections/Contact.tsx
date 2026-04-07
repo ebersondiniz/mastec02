@@ -4,23 +4,59 @@ import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import { MapPin, Phone, Mail, Clock, Send } from 'lucide-react'
 import { useToast } from '@/hooks/use-toast'
+import { supabase } from '@/lib/supabase/client'
 
 export function Contact() {
   const { toast } = useToast()
   const [isSubmitting, setIsSubmitting] = useState(false)
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsSubmitting(true)
-    // Simulate API call
-    setTimeout(() => {
-      setIsSubmitting(false)
+
+    const form = e.target as HTMLFormElement
+    const formData = new FormData(form)
+
+    const data = {
+      name: formData.get('name') as string,
+      email: formData.get('email') as string,
+      subject: formData.get('subject') as string,
+      message: formData.get('message') as string,
+    }
+
+    try {
+      // 1. Salvar os dados do contato no banco de dados do Supabase
+      const { error: dbError } = await supabase.from('contact_messages').insert([data])
+
+      if (dbError) {
+        throw new Error('Falha ao salvar no banco de dados.')
+      }
+
+      // 2. Acionar a Edge Function para enviar o e-mail
+      const { error: fnError } = await supabase.functions.invoke('send-contact-email', {
+        body: data,
+      })
+
+      if (fnError) {
+        console.error('Erro ao acionar envio de e-mail:', fnError)
+        // Apenas registramos no console, pois a mensagem já foi salva no banco
+      }
+
       toast({
         title: 'Mensagem enviada com sucesso!',
         description: 'Agradecemos o seu contato. Nossa equipe retornará em breve.',
       })
-      ;(e.target as HTMLFormElement).reset()
-    }, 1500)
+      form.reset()
+    } catch (error) {
+      console.error('Erro no envio do formulário:', error)
+      toast({
+        title: 'Erro ao enviar mensagem',
+        description: 'Ocorreu um problema ao enviar sua mensagem. Tente novamente mais tarde.',
+        variant: 'destructive',
+      })
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   return (
@@ -115,6 +151,7 @@ export function Contact() {
                   </label>
                   <Input
                     id="name"
+                    name="name"
                     required
                     placeholder="Digite seu nome"
                     className="h-12 bg-slate-50"
@@ -126,6 +163,7 @@ export function Contact() {
                   </label>
                   <Input
                     id="email"
+                    name="email"
                     type="email"
                     required
                     placeholder="seu@email.com"
@@ -139,6 +177,7 @@ export function Contact() {
                 </label>
                 <Input
                   id="subject"
+                  name="subject"
                   required
                   placeholder="Ex: Orçamento para Infraestrutura de Rede"
                   className="h-12 bg-slate-50"
@@ -150,6 +189,7 @@ export function Contact() {
                 </label>
                 <Textarea
                   id="message"
+                  name="message"
                   required
                   placeholder="Descreva os detalhes do seu projeto ou necessidade..."
                   rows={5}
