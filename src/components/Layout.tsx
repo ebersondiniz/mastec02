@@ -186,7 +186,10 @@ export function Layout() {
               <ul className="space-y-4 text-sm">
                 <li className="flex items-start gap-3 text-slate-400">
                   <MapPin className="h-5 w-5 text-secondary shrink-0" />
-                  <span>Rua 9, Qd. 15 Lt. 15-A , Vila Industrial Jundiaí - Anápolis-GO</span>
+                  <span>
+                    Rua Aleixo Rodrigues de Queiroz, 1427 - Qd. 26 Lt. 19&nbsp; - Jundiaí Industrial
+                    - Anápolis-GO, 75.115-010
+                  </span>
                 </li>
                 <li className="flex items-center gap-3 text-slate-400">
                   <Phone className="h-5 w-5 text-secondary shrink-0" />

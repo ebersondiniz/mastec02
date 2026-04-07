@@ -46,9 +46,10 @@ export function Contact() {
                   <div>
                     <h4 className="font-semibold text-white mb-1">Endereço Oficial</h4>
                     <p className="text-slate-300 text-sm leading-relaxed">
-                      Rua 9, Qd.15 Lt.15-A - Vila Industrial Jundiaí
-                      <br />
-                      Anápolis, GO - CEP: 75115-200
+                      <span>
+                        Rua Aleixo Rodrigues de Queiroz, 1427 - Qd. 26 Lt. 19 - Jundiaí Industrial -
+                        Anápolis-GO, 75.115-010
+                      </span>
                     </p>
                   </div>
                 </div>
@@ -58,11 +59,11 @@ export function Contact() {
                     <Phone className="h-5 w-5 text-secondary" />
                   </div>
                   <div>
-                    <h4 className="font-semibold text-white mb-1">Telefones</h4>
+                    <h4 className="font-semibold text-white mb-1">Telefone</h4>
                     <p className="text-slate-300 text-sm leading-relaxed">
                       +55 (62) 3315-2469
                       <br />
-                      +55 (62) 99285-8786
+                      <br />
                     </p>
                   </div>
                 </div>
