@@ -1,4 +1,4 @@
-import { Zap, Wifi, Server, Cable, Lock, Flame } from 'lucide-react'
+import { Zap, Wifi, Server, Lock, Flame, Wind } from 'lucide-react'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 
 const services = [
@@ -9,16 +9,10 @@ const services = [
     icon: Zap,
   },
   {
-    title: 'Infraestrutura de Redes',
+    title: 'Infraestrutura de Redes e Fibra Óptica',
     description:
-      'Projetos de cabeamento estruturado, montagem de data centers, racks e certificação avançada de redes de dados e voz.',
+      'Projetos de cabeamento estruturado, montagem de data centers, racks, lançamento, fusão e certificação de redes em fibra óptica para alta performance.',
     icon: Server,
-  },
-  {
-    title: 'Redes Ópticas (FTTx)',
-    description:
-      'Lançamento, fusão e certificação de redes em fibra óptica para alta performance, garantindo estabilidade e velocidade na transmissão.',
-    icon: Cable,
   },
   {
     title: 'Telecomunicações',
@@ -33,10 +27,16 @@ const services = [
     icon: Lock,
   },
   {
-    title: 'Sistemas de Detecção e Alarme de Incêndio',
+    title: 'Sistemas de Detecção e Combate a Incêndio',
     description:
       'Sensores avançados que identificam sinais precoces de incêndio, como fumaça, calor e gases, protegendo vidas e patrimônios.',
     icon: Flame,
+  },
+  {
+    title: 'Sistemas de Ventilação, Climatização e Aquecimento (HVAC)',
+    description:
+      'Projetos, instalação e manutenção de sistemas de climatização industrial e comercial, garantindo conforto térmico, qualidade do ar e eficiência energética.',
+    icon: Wind,
   },
 ]
 
