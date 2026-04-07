@@ -8,14 +8,14 @@ const projects = [
     image: 'https://img.usecurling.com/p/800/600?q=data%20center%20server%20room',
   },
   {
-    title: 'Rede Óptica Metropolitana',
-    category: 'Telecomunicações',
-    image: 'https://img.usecurling.com/p/800/600?q=fiber%20optic%20installation',
+    title: 'Sistema de Detecção e Alarme de Incêndio',
+    category: 'Segurança',
+    image: 'https://img.usecurling.com/p/800/600?q=fire%20alarm%20system',
   },
   {
-    title: 'Galpão Logístico Integrado',
-    category: 'Engenharia Civil e Redes',
-    image: 'https://img.usecurling.com/p/800/600?q=industrial%20construction%20site',
+    title: 'Engenharia Elétrica',
+    category: 'Infraestrutura',
+    image: 'https://img.usecurling.com/p/800/600?q=industrial%20electrical%20engineering',
   },
 ]
 

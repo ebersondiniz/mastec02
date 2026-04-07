@@ -135,11 +135,11 @@ export function Layout() {
         <div className="container mx-auto px-4 md:px-6">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
             <div className="md:col-span-1">
-              <div className="bg-white/10 p-4 rounded-xl inline-block mb-6 backdrop-blur-sm">
+              <div className="bg-white p-4 rounded-xl inline-block mb-6 shadow-sm">
                 <img
                   src={logoImg}
-                  alt="Mastec Engenharia"
-                  className="h-10 object-contain brightness-0 invert"
+                  alt="Mastec Engenharia e Telecom"
+                  className="h-10 object-contain"
                 />
               </div>
               <p className="text-sm leading-relaxed text-slate-400">
@@ -172,10 +172,10 @@ export function Layout() {
                 Serviços
               </h4>
               <ul className="space-y-4 text-sm text-slate-400">
-                <li>Engenharia Civil</li>
                 <li>Engenharia Elétrica</li>
                 <li>Infraestrutura de Redes</li>
-                <li>Telecomunicações</li>
+                <li>Controle de Acesso</li>
+                <li>Detecção de Incêndio</li>
               </ul>
             </div>
 

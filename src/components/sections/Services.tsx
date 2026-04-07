@@ -1,13 +1,7 @@
-import { Building2, Zap, Wifi, HardHat, Cable, Server } from 'lucide-react'
+import { Zap, Wifi, Server, Cable, Lock, Flame } from 'lucide-react'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 
 const services = [
-  {
-    title: 'Engenharia Civil',
-    description:
-      'Desenvolvimento de projetos, construções e reformas comerciais e industriais com rigoroso controle de qualidade estrutural e arquitetônico.',
-    icon: Building2,
-  },
   {
     title: 'Engenharia Elétrica',
     description:
@@ -33,10 +27,16 @@ const services = [
     icon: Wifi,
   },
   {
-    title: 'Gestão e Gerenciamento',
+    title: 'Controle de Acesso',
     description:
-      'Acompanhamento técnico especializado, fiscalização e gestão integral de projetos de engenharia, garantindo prazos e orçamentos.',
-    icon: HardHat,
+      'Gerenciamento eficiente e seguro para entrada e saída de pessoas em áreas restritas.',
+    icon: Lock,
+  },
+  {
+    title: 'Sistemas de Detecção e Alarme de Incêndio',
+    description:
+      'Sensores avançados que identificam sinais precoces de incêndio, como fumaça, calor e gases, protegendo vidas e patrimônios.',
+    icon: Flame,
   },
 ]
 
