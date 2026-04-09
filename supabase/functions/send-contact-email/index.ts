@@ -1,6 +1,6 @@
 import 'jsr:@supabase/functions-js/edge-runtime.d.ts'
 import { corsHeaders } from '../_shared/cors.ts'
-import { Resend } from 'npm:resend'
+import { Resend } from 'npm:resend@3.2.0'
 
 const resendApiKey = Deno.env.get('RESEND_API_KEY')
 const resend = resendApiKey ? new Resend(resendApiKey) : null
@@ -38,8 +38,9 @@ Deno.serve(async (req: Request) => {
       )
     }
 
+    // Force exactly the requested from address to avoid Resend 403 errors
     const data = await resend.emails.send({
-      from: 'Contato Site <site@mastectelecom.com.br>',
+      from: 'Mastec Telecom <site@mastectelecom.com.br>',
       to: ['vendas@mastectelecom.com.br'],
       reply_to: email,
       subject: `Novo Contato Site: ${subject}`,
