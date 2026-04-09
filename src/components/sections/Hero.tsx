@@ -1,5 +1,6 @@
 import { Button } from '@/components/ui/button'
 import { ArrowRight, Phone } from 'lucide-react'
+import heroImage from '@/assets/empresa-c9777.png'
 
 export function Hero() {
   const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
@@ -17,8 +18,8 @@ export function Hero() {
     >
       <div className="absolute inset-0 z-0">
         <img
-          src="https://img.usecurling.com/p/1920/1080?q=electrical%20engineering%20construction&color=blue"
-          alt="Electrical Engineering Construction"
+          src={heroImage}
+          alt="Mastec Engenharia"
           className="w-full h-full object-cover opacity-30"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-primary via-primary/90 to-primary/40" />
