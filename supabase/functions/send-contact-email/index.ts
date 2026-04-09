@@ -1,6 +1,6 @@
 import 'jsr:@supabase/functions-js/edge-runtime.d.ts'
 import { corsHeaders } from '../_shared/cors.ts'
-import { Resend } from 'resend'
+import { Resend } from 'npm:resend'
 
 const resendApiKey = Deno.env.get('RESEND_API_KEY')
 const resend = resendApiKey ? new Resend(resendApiKey) : null
