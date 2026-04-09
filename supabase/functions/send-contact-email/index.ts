@@ -1,6 +1,6 @@
 import 'jsr:@supabase/functions-js/edge-runtime.d.ts'
 import { corsHeaders } from '../_shared/cors.ts'
-import { Resend } from 'npm:resend'
+import { Resend } from 'resend'
 
 const resendApiKey = Deno.env.get('RESEND_API_KEY')
 const resend = resendApiKey ? new Resend(resendApiKey) : null
@@ -24,7 +24,7 @@ Deno.serve(async (req: Request) => {
     if (!resend) {
       console.warn('RESEND_API_KEY not set. Mocking email send for development.')
       console.log(
-        `[MOCK EMAIL] To: ebersoncorrea@outlook.com\nFrom: ${email}\nSubject: ${subject}\nMessage:\n${message}`,
+        `[MOCK EMAIL] To: vendas@mastectelecom.com.br\nFrom: ${email}\nSubject: ${subject}\nMessage:\n${message}`,
       )
 
       return new Response(
@@ -39,8 +39,8 @@ Deno.serve(async (req: Request) => {
     }
 
     const data = await resend.emails.send({
-      from: 'Contato Site <onboarding@resend.dev>',
-      to: ['ebersoncorrea@outlook.com'],
+      from: 'Contato Site <vendas@mastectelecom.com.br>',
+      to: ['vendas@mastectelecom.com.br'],
       reply_to: email,
       subject: `Novo Contato Site: ${subject}`,
       html: `
