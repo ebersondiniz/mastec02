@@ -204,10 +204,24 @@ export function Layout() {
           </div>
 
           <div className="border-t border-slate-800 mt-16 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
-            <p className="text-sm text-slate-500">
-              &copy; {new Date().getFullYear()} Mastec Engenharia e Telecom. Todos os direitos
-              reservados.
-            </p>
+            <div className="flex flex-col md:flex-row items-center gap-2 md:gap-4 text-sm text-slate-500">
+              <p>
+                &copy; {new Date().getFullYear()} Mastec Engenharia e Telecom. Todos os direitos
+                reservados.
+              </p>
+              <span className="hidden md:inline text-slate-700">•</span>
+              <p>
+                Desenvolvido por{' '}
+                <a
+                  href="https://www.acheisistemas.com.br/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-white transition-colors font-medium"
+                >
+                  Achei Sistemas
+                </a>
+              </p>
+            </div>
             <div className="flex items-center gap-6 text-sm">
               <a href="#" className="text-slate-500 hover:text-white transition-colors">
                 Termos de Uso
