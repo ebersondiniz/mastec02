@@ -24,7 +24,7 @@ Deno.serve(async (req: Request) => {
     if (!resend) {
       console.warn('RESEND_API_KEY not set. Mocking email send for development.')
       console.log(
-        `[MOCK EMAIL] To: vendas@mastectelecom.com.br\nFrom: ${email}\nSubject: ${subject}\nMessage:\n${message}`,
+        `[MOCK EMAIL] To: site@mastectelecom.com.br\nFrom: ${email}\nSubject: ${subject}\nMessage:\n${message}`,
       )
       console.log(
         `[MOCK EMAIL AUTO-REPLY] To: ${email}\nSubject: Recebemos seu contato - Mastec Engenharia\nMessage: Recebemos sua mensagem e em breve retornaremos o seu contato!`,
@@ -44,7 +44,7 @@ Deno.serve(async (req: Request) => {
     const data = await resend.batch.send([
       {
         from: 'Contato Site <onboarding@resend.dev>', // Usando e-mail de teste do resend. Substitua por domínio verificado quando em produção
-        to: ['vendas@mastectelecom.com.br'],
+        to: ['site@mastectelecom.com.br'],
         reply_to: email,
         subject: `Novo Contato Site: ${subject}`,
         html: `
