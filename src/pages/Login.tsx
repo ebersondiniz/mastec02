@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { useNavigate, Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { useAuth } from '@/hooks/use-auth'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -40,9 +40,9 @@ export default function Login() {
     } else {
       toast({
         title: 'Login realizado com sucesso',
-        description: 'Bem-vindo de volta!',
+        description: 'Bem-vindo ao painel administrativo!',
       })
-      navigate('/cliente')
+      navigate('/admin')
     }
   }
 
@@ -50,10 +50,8 @@ export default function Login() {
     <div className="container flex items-center justify-center min-h-[calc(100vh-200px)] py-12">
       <Card className="w-full max-w-md shadow-lg border-muted">
         <CardHeader className="space-y-1">
-          <CardTitle className="text-2xl font-bold">Acessar conta</CardTitle>
-          <CardDescription>
-            Digite seu e-mail e senha para acessar a área do cliente
-          </CardDescription>
+          <CardTitle className="text-2xl font-bold">Acesso Restrito</CardTitle>
+          <CardDescription>Área exclusiva para administradores</CardDescription>
         </CardHeader>
         <form onSubmit={handleSubmit}>
           <CardContent className="space-y-4">
@@ -84,12 +82,6 @@ export default function Login() {
               {isLoading && <Loader2 className="w-4 h-4 mr-2 animate-spin" />}
               Entrar
             </Button>
-            <div className="text-sm text-center text-muted-foreground">
-              Não tem uma conta?{' '}
-              <Link to="/register" className="text-primary hover:underline font-medium">
-                Cadastre-se
-              </Link>
-            </div>
           </CardFooter>
         </form>
       </Card>

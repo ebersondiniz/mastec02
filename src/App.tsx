@@ -3,8 +3,7 @@ import { Layout } from '@/components/Layout'
 import Index from '@/pages/Index'
 import NotFound from '@/pages/NotFound'
 import Login from '@/pages/Login'
-import Register from '@/pages/Register'
-import ClientArea from '@/pages/ClientArea'
+import Dashboard from '@/pages/admin/Dashboard'
 import { ProtectedRoute } from '@/components/ProtectedRoute'
 import { AuthProvider } from '@/hooks/use-auth'
 import { Toaster } from '@/components/ui/toaster'
@@ -18,10 +17,11 @@ function App() {
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route index element={<Index />} />
-            <Route path="login" element={<Login />} />
-            <Route path="register" element={<Register />} />
-            <Route element={<ProtectedRoute />}>
-              <Route path="cliente" element={<ClientArea />} />
+            <Route path="admin">
+              <Route path="login" element={<Login />} />
+              <Route element={<ProtectedRoute />}>
+                <Route index element={<Dashboard />} />
+              </Route>
             </Route>
             <Route path="*" element={<NotFound />} />
           </Route>
