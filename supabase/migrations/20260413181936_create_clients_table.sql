@@ -28,16 +28,16 @@ DO $$
 BEGIN
     IF NOT EXISTS (SELECT 1 FROM public.clients WHERE name = 'MRV') THEN
         INSERT INTO public.clients (name, logo_url) VALUES
-        ('MRV', 'https://img.usecurling.com/i?q=building&shape=fill&color=green');
+        ('MRV', '/mrv.png');
     END IF;
 
     IF NOT EXISTS (SELECT 1 FROM public.clients WHERE name = 'Gerresheimer') THEN
         INSERT INTO public.clients (name, logo_url) VALUES
-        ('Gerresheimer', 'https://img.usecurling.com/i?q=medical&shape=lineal-color&color=cyan');
+        ('Gerresheimer', '/gerresheimer.png');
     END IF;
 
     IF NOT EXISTS (SELECT 1 FROM public.clients WHERE name = 'BAAN') THEN
         INSERT INTO public.clients (name, logo_url) VALUES
-        ('BAAN', 'https://img.usecurling.com/i?q=airplane&shape=fill&color=yellow');
+        ('BAAN', '/baan.png');
     END IF;
 END $$;
