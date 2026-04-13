@@ -33,7 +33,7 @@ export default function ClientArea() {
           .from('profiles')
           .select('*')
           .eq('id', user.id)
-          .single()
+          .maybeSingle()
 
         if (error) throw error
 
@@ -43,6 +43,13 @@ export default function ClientArea() {
             email: data.email || user.email || '',
             phone: data.phone || '',
             address: data.address || '',
+          })
+        } else {
+          setProfile({
+            name: '',
+            email: user.email || '',
+            phone: '',
+            address: '',
           })
         }
       } catch (error: any) {
@@ -66,15 +73,14 @@ export default function ClientArea() {
 
     setIsSaving(true)
     try {
-      const { error } = await supabase
-        .from('profiles')
-        .update({
-          name: profile.name,
-          phone: profile.phone,
-          address: profile.address,
-          updated_at: new Date().toISOString(),
-        })
-        .eq('id', user.id)
+      const { error } = await supabase.from('profiles').upsert({
+        id: user.id,
+        email: profile.email || user.email,
+        name: profile.name,
+        phone: profile.phone,
+        address: profile.address,
+        updated_at: new Date().toISOString(),
+      })
 
       if (error) throw error
 

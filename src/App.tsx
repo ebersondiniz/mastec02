@@ -9,6 +9,7 @@ import { ProtectedRoute } from '@/components/ProtectedRoute'
 import { AuthProvider } from '@/hooks/use-auth'
 import { Toaster } from '@/components/ui/toaster'
 import { Toaster as Sonner } from '@/components/ui/sonner'
+import { FloatingContact } from '@/components/FloatingContact'
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
             <Route path="*" element={<NotFound />} />
           </Route>
         </Routes>
+        <FloatingContact />
         <Toaster />
         <Sonner />
       </Router>
