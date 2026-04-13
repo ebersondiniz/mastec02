@@ -4,6 +4,8 @@ import Index from '@/pages/Index'
 import NotFound from '@/pages/NotFound'
 import Login from '@/pages/Login'
 import Dashboard from '@/pages/admin/Dashboard'
+import ClientsAdmin from '@/pages/admin/Clients'
+import { AdminLayout } from '@/components/AdminLayout'
 import { ProtectedRoute } from '@/components/ProtectedRoute'
 import { AuthProvider } from '@/hooks/use-auth'
 import { Toaster } from '@/components/ui/toaster'
@@ -20,7 +22,10 @@ function App() {
             <Route path="admin">
               <Route path="login" element={<Login />} />
               <Route element={<ProtectedRoute />}>
-                <Route index element={<Dashboard />} />
+                <Route element={<AdminLayout />}>
+                  <Route index element={<Dashboard />} />
+                  <Route path="clients" element={<ClientsAdmin />} />
+                </Route>
               </Route>
             </Route>
             <Route path="*" element={<NotFound />} />
