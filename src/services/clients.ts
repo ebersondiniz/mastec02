@@ -5,6 +5,7 @@ export interface Client {
   name: string
   logo_url: string
   is_active: boolean
+  sort_order?: number
   created_at: string
 }
 
@@ -13,7 +14,8 @@ export async function getClients() {
     .from('clients')
     .select('*')
     .eq('is_active', true)
-    .order('created_at', { ascending: true })
+    .order('sort_order', { ascending: true })
+    .order('created_at', { ascending: false })
 
   if (error) {
     console.error('Error fetching clients:', error)

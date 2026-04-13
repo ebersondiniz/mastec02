@@ -18,16 +18,15 @@ function App() {
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route index element={<Index />} />
-            <Route path="admin">
-              <Route path="login" element={<Login />} />
-              <Route element={<ProtectedRoute />}>
-                <Route element={<AdminLayout />}>
-                  <Route index element={<Dashboard />} />
-                  <Route path="clients" element={<ClientsAdmin />} />
-                </Route>
-              </Route>
-            </Route>
+            <Route path="admin/login" element={<Login />} />
             <Route path="*" element={<NotFound />} />
+          </Route>
+
+          <Route path="/admin" element={<ProtectedRoute />}>
+            <Route element={<AdminLayout />}>
+              <Route index element={<Dashboard />} />
+              <Route path="clients" element={<ClientsAdmin />} />
+            </Route>
           </Route>
         </Routes>
         <Toaster />

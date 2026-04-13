@@ -14,7 +14,7 @@ import {
   TableRow,
 } from '@/components/ui/table'
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog'
-import { Plus, Trash2, Edit2, Loader2, Image as ImageIcon } from 'lucide-react'
+import { Plus, Trash2, Edit2, Loader2, Image as ImageIcon, ArrowUp, ArrowDown } from 'lucide-react'
 import { toast } from 'sonner'
 
 export default function ClientsAdmin() {
@@ -38,14 +38,47 @@ export default function ClientsAdmin() {
     const { data, error } = await supabase
       .from('clients')
       .select('*')
+      .order('sort_order', { ascending: true })
       .order('created_at', { ascending: false })
 
     if (error) {
       toast.error('Erro ao buscar clientes')
     } else {
-      setClients(data || [])
+      const normalizedData = (data || []).map((client, index) => ({
+        ...client,
+        sort_order: client.sort_order ?? index,
+      }))
+      setClients(normalizedData)
     }
     setLoading(false)
+  }
+
+  const moveClient = async (index: number, direction: 'up' | 'down') => {
+    if (direction === 'up' && index === 0) return
+    if (direction === 'down' && index === clients.length - 1) return
+
+    const newIndex = direction === 'up' ? index - 1 : index + 1
+    const newClients = [...clients]
+
+    const temp = newClients[index]
+    newClients[index] = newClients[newIndex]
+    newClients[newIndex] = temp
+
+    const updatedClients = newClients.map((client, i) => ({
+      ...client,
+      sort_order: i,
+    }))
+
+    setClients(updatedClients)
+
+    Promise.all(
+      updatedClients.map((c) =>
+        supabase.from('clients').update({ sort_order: c.sort_order }).eq('id', c.id),
+      ),
+    ).catch(() => {
+      toast.error('Erro ao reordenar clientes')
+      fetchClients()
+    })
   }
 
   const resetForm = () => {
@@ -122,9 +155,11 @@ export default function ClientsAdmin() {
       if (error) toast.error('Erro ao atualizar cliente')
       else toast.success('Cliente atualizado')
     } else {
+      const maxSortOrder =
+        clients.length > 0 ? Math.max(...clients.map((c) => c.sort_order ?? 0)) : -1
       const { error } = await supabase
         .from('clients')
-        .insert({ name, is_active: isActive, logo_url: finalLogoUrl })
+        .insert({ name, is_active: isActive, logo_url: finalLogoUrl, sort_order: maxSortOrder + 1 })
 
       if (error) toast.error('Erro ao criar cliente')
       else toast.success('Cliente criado')
@@ -148,6 +183,7 @@ export default function ClientsAdmin() {
         <Table>
           <TableHeader>
             <TableRow>
+              <TableHead className="w-24">Ordem</TableHead>
               <TableHead className="w-24">Logo</TableHead>
               <TableHead>Nome</TableHead>
               <TableHead>Status</TableHead>
@@ -157,19 +193,41 @@ export default function ClientsAdmin() {
           <TableBody>
             {loading ? (
               <TableRow>
-                <TableCell colSpan={4} className="text-center py-10">
+                <TableCell colSpan={5} className="text-center py-10">
                   <Loader2 className="h-6 w-6 animate-spin mx-auto text-muted-foreground" />
                 </TableCell>
               </TableRow>
             ) : clients.length === 0 ? (
               <TableRow>
-                <TableCell colSpan={4} className="text-center py-10 text-muted-foreground">
+                <TableCell colSpan={5} className="text-center py-10 text-muted-foreground">
                   Nenhum cliente cadastrado.
                 </TableCell>
               </TableRow>
             ) : (
-              clients.map((client) => (
+              clients.map((client, index) => (
                 <TableRow key={client.id}>
+                  <TableCell>
+                    <div className="flex flex-col items-center gap-1">
+                      <Button
+                        variant="ghost"
+                        size="icon"
+                        className="h-6 w-6"
+                        disabled={index === 0}
+                        onClick={() => moveClient(index, 'up')}
+                      >
+                        <ArrowUp className="h-4 w-4" />
+                      </Button>
+                      <Button
+                        variant="ghost"
+                        size="icon"
+                        className="h-6 w-6"
+                        disabled={index === clients.length - 1}
+                        onClick={() => moveClient(index, 'down')}
+                      >
+                        <ArrowDown className="h-4 w-4" />
+                      </Button>
+                    </div>
+                  </TableCell>
                   <TableCell>
                     {client.logo_url ? (
                       <img
